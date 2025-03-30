@@ -1,4 +1,4 @@
-local whitelist = { "UgcScripterNoob", "IkerRCplus10", "OmegaReap3r", "pamda0978", "Ahkdan_BloxFruit", "yeeftaMaster28" }
+local whitelist = { "UgcScripterNoob", "kiffynianooo", "IkerRCplus10", "OmegaReap3r", "pamda0978", "Ahkdan_BloxFruit", "yeeftaMaster28" }
 
 local player = game.Players.LocalPlayer local username = player.Name
 
