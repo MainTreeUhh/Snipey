@@ -1,0 +1,171 @@
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local SnipeyUI = Library:NewWindow("<^> Snipey <^>")
+
+game.StarterGui:SetCore("SendNotification", {
+
+        Title = "Auto Sniper Activated",
+
+        Text = "!!",
+
+        Duration = 5
+
+    })
+
+local MainSection = SnipeyUI:NewSection("> Main:")
+
+getgenv().AutoClickerPurchase = false
+
+getgenv().AutoClickerError = false
+
+getgenv().PurchasePromptPath = game:GetService("CoreGui"):FindFirstChild("PurchasePromptApp") or game:GetService("CoreGui").PurchasePrompt
+
+local function AutoClickerPurchaseFunction()
+
+    while true do
+
+        task.wait(0.1)
+
+        if getgenv().AutoClickerPurchase and getgenv().PurchasePromptPath then
+
+            local prompt = getgenv().PurchasePromptPath.ProductPurchaseContainer.Animator:FindFirstChild("Prompt")
+
+            if prompt and prompt:FindFirstChild("AlertContents") then
+
+                local footer = prompt.AlertContents:FindFirstChild("Footer")
+
+                if footer and footer:FindFirstChild("Buttons") then
+
+                    local button = footer.Buttons:FindFirstChild("2")
+
+                    if button and button:FindFirstChild("ButtonContent") and button.ButtonContent:FindFirstChild("ButtonMiddleContent") then
+
+                        local buttonPos = button.AbsolutePosition
+
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(
+
+                            buttonPos.X + 55,
+
+                            buttonPos.Y + 65.5,
+
+                            0, true, game, 1
+
+                        )
+
+                        task.wait(0.1)
+
+                        game:GetService("VirtualInputManager"):SendMouseButtonEvent(
+
+                            buttonPos.X + 55,
+
+                            buttonPos.Y + 65.5,
+
+                            0, false, game, 1
+
+                        )
+
+                    end
+
+                end
+
+            end
+
+        end
+
+    end
+
+end
+
+local function AutoClickerErrorFunction()
+
+    while true do
+
+        task.wait(0.1)
+
+        if getgenv().AutoClickerError and getgenv().PurchasePromptPath then
+
+            local prompt = getgenv().PurchasePromptPath.ProductPurchaseContainer.Animator:FindFirstChild("Prompt")
+
+            if prompt and prompt:FindFirstChild("AlertContents") then
+
+                local footer = prompt.AlertContents:FindFirstChild("Footer")
+
+                if footer and footer:FindFirstChild("Buttons") then
+
+                    if not footer.Buttons:FindFirstChild("2") then
+
+                        local button = footer.Buttons:FindFirstChild("1")
+
+                        if button and button:FindFirstChild("ButtonContent") and button.ButtonContent:FindFirstChild("ButtonMiddleContent") then
+
+                            local buttonPos = button.AbsolutePosition
+
+                            game:GetService("VirtualInputManager"):SendMouseButtonEvent(
+
+                                buttonPos.X + 55,
+
+                                buttonPos.Y + 65.5,
+
+                                0, true, game, 1
+
+                            )
+
+                            task.wait(0.1)
+
+                            game:GetService("VirtualInputManager"):SendMouseButtonEvent(
+
+                                buttonPos.X + 55,
+
+                                buttonPos.Y + 65.5,
+
+                                0, false, game, 1
+
+                            )
+
+                        end
+
+                    end
+
+                end
+
+            end
+
+        end
+
+    end
+
+end
+
+MainSection:CreateToggle("Auto Click Purchase", function(value)
+
+    getgenv().AutoClickerPurchase = value
+
+end)
+
+MainSection:CreateToggle("Auto Close Error", function(value)
+
+    getgenv().AutoClickerError = value
+
+end)
+
+coroutine.wrap(AutoClickerPurchaseFunction)()
+
+coroutine.wrap(AutoClickerErrorFunction)()
+
+local autoProximityEnabled = false local adjust = 0.4
+
+MainSection:CreateTextbox("Adjust Proximity Speed", function(value) local num = tonumber(value) if num and num > 0 then adjust = num end end)
+
+MainSection:CreateToggle("ProximityPrompt", function(value) autoProximityEnabled = value
+
+while autoProximityEnabled do
+    for _, pro in ipairs(workspace:GetDescendants()) do
+        if pro:IsA("ProximityPrompt") then
+            fireproximityprompt(pro)
+        end
+    end
+    task.wait(adjust)
+end
+end)
+
+local Cat = SnipeyUI:NewSection("YT: MainTreeUhh")
