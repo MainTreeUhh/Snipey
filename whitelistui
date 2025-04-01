@@ -12,27 +12,7 @@ game.StarterGui:SetCore("SendNotification", {
 
     })
 
-task.wait(5.2)
-
-game.StarterGui:SetCore("SendNotification", {
-
-        Title = "Note!👹",
-
-        Text = "ONLY USE PROXIMITYPROMPT IF THE PROMPT IS NOT SHOWING",
-
-        Duration = 5
-
-    })
-
-game.StarterGui:SetCore("SendNotification", {
-
-        Title = "Note!👹",
-
-        Text = "DONT USE PROXIMITYPROMPT IF UGC IS PROMPTING (NOT RELEASE BUT PROMPTING)",
-
-        Duration = 5
-
-    })
+task.wait(1)
 
 local MainSection = SnipeyUI:NewSection("> Main:")
 
