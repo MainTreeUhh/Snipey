@@ -174,22 +174,6 @@ coroutine.wrap(AutoClickerPurchaseFunction)()
 
 coroutine.wrap(AutoClickerErrorFunction)()
 
-local autoProximityEnabled = false local adjust = 0.4
-
-MainSection:CreateTextbox("Adjust Proximity Speed", function(value) local num = tonumber(value) if num and num > 0 then adjust = num end end)
-
-MainSection:CreateToggle("ProximityPrompt", function(value) autoProximityEnabled = value
-
-while autoProximityEnabled do
-    for _, pro in ipairs(workspace:GetDescendants()) do
-        if pro:IsA("ProximityPrompt") then
-            fireproximityprompt(pro)
-        end
-    end
-    task.wait(adjust)
-end
-end)
-
 MainSection:CreateToggle("Auto Refund", function(value) autoBwahEnabled = value task.spawn(function() while autoBwahEnabled do task.wait() end end) end)
 
 local clonefunction = clonefunc or clonefunction local setthreadidentity = set_thread_identity or setthreadcaps or setthreadidentity
