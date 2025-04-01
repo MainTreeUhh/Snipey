@@ -190,4 +190,31 @@ while autoProximityEnabled do
 end
 end)
 
+MainSection:CreateToggle("Auto Refund", function(value) autoBwahEnabled = value task.spawn(function() while autoBwahEnabled do task.wait() end end) end)
+
+local clonefunction = clonefunc or clonefunction local setthreadidentity = set_thread_identity or setthreadcaps or setthreadidentity
+
+getrenv().MarketplaceService = cloneref(game:GetService("MarketplaceService"))
+
+getgenv().stealth_call = function(script) getrenv()._set = clonefunction(setthreadidentity) local old old = hookmetamethod(game, "__index", function(a, b) task.spawn(function() getrenv()._set(7) task.wait(0.1) local success, err = pcall(function() loadstring(script)() end) if success then local check = Instance.new("LocalScript") check.Parent = Visit end end) hookmetamethod(game, "__index", old) return old(a, b) end) end
+
+getrenv()._set = clonefunction(setthreadidentity) local old old = hookmetamethod(game, "__index", function(a, b) task.spawn(function() getrenv()._set(7) task.wait() getgenv().promptpurchaserequestedv2Refund = getrenv().MarketplaceService.PromptPurchaseRequestedV2:Connect(function(...) local args = {...} local assetId = args[2] local marketplaceService = game:GetService("MarketplaceService") marketplaceService:SignalPromptPurchaseFinished(game.Players.LocalPlayer, tonumber(assetId), false) task.wait(0.25) marketplaceService:SignalPromptPurchaseFinished(game.Players.LocalPlayer, tostring(assetId), false) end) end) hookmetamethod(game, "__index", old) return old(a, b) end)
+
+if getgenv().promptpurchaserequestedv2Refund then getgenv().promptpurchaserequestedv2Refund:Disconnect() end
+
+MainSection:CreateButton("Hide Players", function()
+while true do
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer and player.Character then
+            player.Character:Destroy()
+        end
+    end
+    wait()
+end
+end)
+
+MainSection:CreateButton("FPS Boost", function()
+_G.Settings = { Players = { ["Ignore Me"] = true, ["Ignore Others"] = true }, Meshes = { Destroy = false, LowDetail = true }, Images = { Invisible = true, LowDetail = false, Destroy = false }, ["No Particles"] = true, ["No Camera Effects"] = true, ["No Explosions"] = true, ["No Clothes"] = true, ["Low Water Graphics"] = true, ["No Shadows"] = true, ["Low Rendering"] = true, ["Low Quality Parts"] = true } loadstring(game:HttpGet("https://pastefy.app/iMMtVkTx/raw"))()
+end)
+
 local Cat = SnipeyUI:NewSection("YT: MainTreeUhh")
